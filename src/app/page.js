@@ -95,6 +95,7 @@ export default function Home() {
             flexDirection={'column'}
             alignItems={'center'}
             gap={2}
+            bgcolor="#ffffff"
         >
             <Modal
                 open={open}
@@ -103,7 +104,7 @@ export default function Home() {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                    <Typography id="modal-modal-title" variant="h6" component="h2" color={'#333'}>
                         Add Item
                     </Typography>
                     <Stack width="100%" direction={'row'} spacing={2}>
@@ -128,15 +129,19 @@ export default function Home() {
                     </Stack>
                 </Box>
             </Modal>
+
+            <Typography sx={{ fontWeight: 'bold' }} variant={'h1'} color={'#333'} textAlign={'center'}>Pantry Tracker</Typography>
+
             {/* header UI */}
             <Stack width="800px" direction={'row'} spacing={2}>
                 <TextField
+                    color="primary"
                     id="outlined-basic"
                     label="Search"
-                    variant="outlined"
                     fullWidth
                     value={searchName}
                     onChange={(e) => setSearchName(e.target.value)}
+                    focused
                 />
                 <Button variant="contained" onClick={handleOpen} sx={{ flexShrink: 0 }}>
                     Add New Item
@@ -168,12 +173,15 @@ export default function Home() {
                             bgcolor={'#f8f3f0'}
                             paddingX={5}
                         >
-                            <Typography variant={'h3'} color={'#333'} textAlign={'center'}>
+                            <Typography variant={'h4'} color={'#333'} textAlign={'left'} width={'25%'} noWrap>
                                 {name.charAt(0).toUpperCase() + name.slice(1)}
                             </Typography>
-                            <Typography variant={'h3'} color={'#333'} textAlign={'center'}>
+                            <Typography variant={'h4'} color={'#333'} textAlign={'center'}>
                                 Quantity: {quantity}
                             </Typography>
+                            <Button variant="contained" onClick={() => addItem(name.toLowerCase())}>
+                                Add
+                            </Button>
                             <Button variant="contained" onClick={() => removeItem(name.toLowerCase())}>
                                 Remove
                             </Button>
